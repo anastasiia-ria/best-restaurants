@@ -77,14 +77,13 @@ namespace BestRestaurants.Controllers
     public ActionResult Search(string parameter)
     {
       var cuisineList = _db.Cuisines.AsQueryable();
-      var id = cuisineList.Single(c => c.Name == parameter).CuisineId;
+      var restaurantList = _db.Restaurants.AsQueryable();
 
+      var cuisineId = cuisineList.Single(c => c.Name == parameter).CuisineId;
 
-      var query = _db.Restaurants.AsQueryable();
-      var cuisineId = id;
-      query = query.Where(d => d.CuisineId == cuisineId);
+      restaurantList = restaurantList.Where(d => d.CuisineId == cuisineId);
 
-      var search = query.ToList();
+      var search = restaurantList.ToList();
       return View("Index", search);
     }
   }
