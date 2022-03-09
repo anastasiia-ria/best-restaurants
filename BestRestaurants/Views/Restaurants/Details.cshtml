@@ -7,6 +7,10 @@
 <h2>Restaurant Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)<h3>
+<h3>@Html.DisplayNameFor(model => model.Location): @Html.DisplayFor(model => model.Location)<h3>
+<h3>@Html.DisplayNameFor(model => model.CostRange): @Html.DisplayFor(model => model.CostRange)<h3>
+<h3>@Html.DisplayNameFor(model => model.Rating): @Html.DisplayFor(model => model.Rating)<h3>
+<h3>@Html.DisplayNameFor(model => model.Cuisine.Name): @Html.DisplayFor(model => model.Cuisine.Name)<h3>
 <p>@Html.ActionLink("Edit Restaurant", "Edit", new { id = Model.RestaurantId })</p>
 <p>@Html.ActionLink("Delete Restaurant", "Delete", new { id = Model.RestaurantId })</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>

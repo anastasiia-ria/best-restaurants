@@ -3,4 +3,12 @@
 }
 
 <h1>Welcome to the Cool restaurant website!</h1>
-<p>@Html.ActionLink("See all Restaurants", "Index", "Restaurants")</p> <p>@Html.ActionLink("See all cuisines", "Index", "Cuisines")</p>
+<p>@Html.ActionLink("See all Restaurants", "Index", "Restaurants")</p>
+<p>@Html.ActionLink("See all Cuisines", "Index", "Cuisines")</p>
+
+@using(Html.BeginForm("search", "Restaurants", FormMethod.Post))
+{
+  <label>Cuisine Name </label>
+  @Html.TextBox("parameter")
+  <input type="submit" value="Search" />
+}
