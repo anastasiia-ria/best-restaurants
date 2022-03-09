@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using BestRestaurants.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace BestRestaurants.Controllers
 {
@@ -70,6 +71,21 @@ namespace BestRestaurants.Controllers
       _db.Restaurants.Remove(thisRestaurant);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult Search(string parameter)
+    {
+      var cuisineList = _db.Cuisines.AsQueryable();
+      var id = cuisineList.Single(c => c.Name == parameter).CuisineId;
+
+
+      var query = _db.Restaurants.AsQueryable();
+      var cuisineId = id;
+      query = query.Where(d => d.CuisineId == cuisineId);
+
+      var search = query.ToList();
+      return View("Index", search);
     }
   }
 }
