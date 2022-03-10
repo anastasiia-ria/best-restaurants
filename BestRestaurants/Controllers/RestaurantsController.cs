@@ -23,6 +23,14 @@ namespace BestRestaurants.Controllers
       return View(model);
     }
 
+    public ActionResult IndexSpecific(int id)
+    {
+      var restaurantList = _db.Restaurants.AsQueryable();
+      restaurantList = restaurantList.Where(r => r.CuisineId == id);
+
+      var search = restaurantList.ToList();
+      return View("Index", search);
+    }
     public ActionResult Create()
     {
       ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "Name");
@@ -81,7 +89,7 @@ namespace BestRestaurants.Controllers
 
       var cuisineId = cuisineList.Single(c => c.Name == parameter).CuisineId;
 
-      restaurantList = restaurantList.Where(d => d.CuisineId == cuisineId);
+      restaurantList = restaurantList.Where(r => r.CuisineId == cuisineId);
 
       var search = restaurantList.ToList();
       return View("Index", search);
